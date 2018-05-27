@@ -1,5 +1,6 @@
 package com.walmart.coding.challenge.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Venue {
@@ -12,6 +13,7 @@ public class Venue {
     public Venue(int rows, int noOfSeatsPerRow) {
         this.rows = rows;
         this.noOfSeatsPerRow = noOfSeatsPerRow;
+        this.seats = new ArrayList<Seat>();
         setCapacity(); //set the total capacity of the venue
         setSeatsAvailability(); //set the availability of each seat as Available initially
     }

@@ -8,6 +8,7 @@ import java.util.List;
  * model that holds the seats booked by a particular customer
  */
 public class SeatHold {
+    private static int id = 1;
     private int seatHoldId; //id of all the seats held by the customer
     private Customer customer; //customer who held seats with Id seatHoldId
     private Date bookingTime; //time when the booking was made. This is required so that seats can be reserved for a specific amount of time
@@ -17,6 +18,9 @@ public class SeatHold {
      *
      * @return id of the seats held
      */
+    public SeatHold(){
+        this.seatHoldId = id++;
+    }
     public int getSeatHoldId() {
         return seatHoldId;
     }
