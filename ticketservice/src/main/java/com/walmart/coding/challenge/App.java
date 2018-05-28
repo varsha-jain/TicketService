@@ -17,7 +17,7 @@ public class App
 
 /*
 * to-do
-* 1. create menu and interaction in separate class
+* 1. create menu and interaction in separate class --done
 * 2. validations
 * 3. while booking/reserving ask for row from user and scenarios while booking
 * 4. documentation

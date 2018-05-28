@@ -68,27 +68,32 @@ public class TicketServiceImpl implements TicketService {
             if(id == seatHoldId && customerEmail.equalsIgnoreCase(map.getValue().getCustomer().getEmail())){
                 SeatHold seatHold = map.getValue();
                 long timeLimit = Math.abs((seatHold.getBookingTime().getTime() - (new Date().getTime())))/1000;
-                System.out.println("time limit: " + timeLimit);
+                //System.out.println("time limit: " + timeLimit);
+                bookedTickets.remove(seatHoldId);
                 if(timeLimit < _timeLimit){
                     reservedSeats.put(customerEmail, seatHold);
                     for(Seat seat: seatHold.getSeats()){
                         seat.setStatus(Status.RESERVED);
                     }
-                    bookedTickets.remove(seatHoldId);
+
                     return "Seats reserved successfully!";
 
                 }else{
                     //time limit expired so make those seats available again
-                    bookedTickets.remove(seatHoldId);
+
                     if(reservedSeats.get(customerEmail) ==null){
                         for(Seat seat: seatHold.getSeats()){
                             seat.setStatus(Status.AVAILABLE);
                         }
                         availableSeats = availableSeats + seatHold.getSeats().size();
                         //System.out.println("inside else loop: " + availableSeats);
+                    }else{
+                        System.out.println("you already have a booking with this id and email address");
                     }
 
                 }
+            }else{
+                System.out.println("Either id or email address is not verified. Please continue with correct values.");
             }
         }
         return "Sorry couldn't reserve seats successfully!";
