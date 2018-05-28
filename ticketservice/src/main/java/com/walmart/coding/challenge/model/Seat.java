@@ -2,6 +2,7 @@ package com.walmart.coding.challenge.model;
 
 /***
  * @author varsha
+ * model that represents a particular seat object
  */
 public class Seat {
 
@@ -15,14 +16,27 @@ public class Seat {
         this.status = status;
     }
 
+    /**
+     *
+     * @return the row number
+     */
     public int getRow() {
         return row;
     }
 
+    /***
+     *
+     * @param row
+     */
     public void setRow(int row) {
         this.row = row;
     }
 
+    /***
+     *
+     * @return column id of that seat
+     * row id and col id define the location of every seat
+     */
     public int getCol() {
         return col;
     }
@@ -31,10 +45,18 @@ public class Seat {
         this.col = col;
     }
 
+    /***
+     *
+     * @return the status of each seat
+     */
     public Status getStatus() {
         return status;
     }
 
+    /***
+     * set the status of the seat
+     * @param status
+     */
     public void setStatus(Status status) {
         this.status = status;
     }

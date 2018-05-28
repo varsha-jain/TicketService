@@ -8,16 +8,22 @@ import com.walmart.coding.challenge.validations.ValidateInput;
 
 import java.util.Scanner;
 
+/***
+ * @author varsha
+ * Class to simulate interaction with the user
+ */
 public class InteractiveMenu {
     public static void startMenu(){
-        System.out.println( "*********Ticket Service***********" );
-
-        int rows = 5;
-        int col = 5;
-        Venue venue = new Venue(rows,col);
-        TicketService ticketService = new TicketServiceImpl(venue);
         Scanner scr = new Scanner(System.in);
+        System.out.println( "*********Ticket Service***********" );
+        System.out.println("Enter the no of rows in the venue");
+        int rows = ValidateInput.validateNumber(scr); //no of rows in the venue
+        System.out.println("Enter the no of seats per row");
+        int col = ValidateInput.validateNumber(scr);
+        Venue venue = new Venue(rows,col); //an instance of the venue with specified rows and cols
+        TicketService ticketService = new TicketServiceImpl(venue);
         int input = 0;
+        //start of the menu
         do{
             System.out.println("Menu options:-\n1.Available Seats\n2.Book tickets\n3.Reserve seats\n4.Exit");
             System.out.println("Enter your option!");
@@ -26,27 +32,24 @@ public class InteractiveMenu {
                 scr.next();
             }
             input = scr.nextInt();
-
             switch(input){
-                case 1: System.out.println("Find out the total available seats!");
+                case 1: System.out.println("Find out the total available seats!"); //count the available seats in the venue
                         int seatsAvailable = ticketService.numSeatsAvailable();
                         System.out.println("Total seats available are: " + seatsAvailable);
                         break;
 
-                case 2: System.out.println("Book/Hold tickets! Expiration time is 60seconds only.");
+                case 2: System.out.println("Book/Hold tickets! Expiration time is 60seconds only."); //hold the seats fro 60 seconds
                         System.out.println("How many seats do you want to hold?");
-                        int num = ValidateInput.validateNumber(scr);
+                        int num = ValidateInput.validateNumber(scr); //validate user input
                         System.out.println("Enter your email id");
                         String email = scr.next();
-                        boolean isValidEmail = ValidateInput.validateEmail(email);
+                        boolean isValidEmail = ValidateInput.validateEmail(email); //validate email id of user
                         if(!isValidEmail){
                             email = ValidateInput.getValidEmail(isValidEmail, scr);
                         }
                         SeatHold seatHold = ticketService.findAndHoldSeats(num,email);
                         if(seatHold != null)
                             System.out.println("Your booking id is: " + seatHold.getSeatHoldId());
-                        else
-                            System.out.println("Sorry no more seats available!");
                         System.out.println(" total seats available now are: " + ticketService.numSeatsAvailable());
                         break;
 

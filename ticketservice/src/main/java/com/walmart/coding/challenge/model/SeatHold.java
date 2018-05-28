@@ -1,5 +1,6 @@
 package com.walmart.coding.challenge.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class SeatHold {
      */
     public SeatHold(){
         this.seatHoldId = id++;
+        this.seats = new ArrayList<Seat>();
     }
     public int getSeatHoldId() {
         return seatHoldId;

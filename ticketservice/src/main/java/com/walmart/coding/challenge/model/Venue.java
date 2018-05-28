@@ -3,6 +3,10 @@ package com.walmart.coding.challenge.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * model that represents the theatre
+ * @author varsha
+ */
 public class Venue {
 
     private List<Seat> seats; //all the seats in the theatre
