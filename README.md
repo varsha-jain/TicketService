@@ -18,13 +18,13 @@ Step 3: java -jar target\ticketservice-1.0-SNAPSHOT-jar-with-dependencies.jar co
 
 ## Implementation Details:
 1. Models: Venue,Customer, Seat, SeatHold
-2. SeatHold is a collection of Seats
+2. SeatHold is a collection of Seats held by user and has an id along with customer associated with it.
 3. Every Seat has a location in terms of row and columne and a status (Available, Hold, Reserved)
 4. Statuses are stated in enum
 5. Venue is a collection of seats
 6. Every Seat hold is associated with a customer
-7. Customer pojo stores information about customer
-8. Service implements 3 methods: numOfSeatsAvailable(), reserveSeats() and findAndHoldGOodSeats()
+7. Customer pojo stores information about customer such as email id
+8. Service implements 3 methods: numOfSeatsAvailable(), reserveSeats() and findAndHoldGoodSeats()
 9. Test case has been written for all the three methods in the interface implementation
 9. Vaidation has been performed
 20. Interactive menu has been programmed 
