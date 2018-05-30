@@ -7,7 +7,7 @@ This application allows users to check if seats are available or not, then allow
 clone the repository<br>
 In the directory with pom.xml run the following maven commands<br>
 Step 1: mvn clean install<br>
-Step 2: mvn clean install package assembly:assembly -DskipTests (To skip tests)/ mvn clean install package assembly:assembly<br>
+Step 2: mvn clean install package assembly:assembly -DskipTests<br>
 Step 3: java -jar target\ticketservice-1.0-SNAPSHOT-jar-with-dependencies.jar com.walmart.coding.challenge.App
 
 ### Assumptions:
