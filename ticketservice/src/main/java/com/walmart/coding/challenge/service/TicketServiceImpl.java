@@ -13,13 +13,13 @@ public class TicketServiceImpl implements TicketService {
     private long _timeLimit = 60L; //expiration time limit
     private int availableSeats; //variable to hold the count of seats
     private HashMap<Integer, SeatHold> bookedTickets; //map to store the booked tickets
-    private HashMap<String, SeatHold> reservedSeats; //map to store the reserved seats
+    private HashMap<Integer, SeatHold> reservedSeats; //map to store the reserved seats
 
     public TicketServiceImpl(Venue v){
         this.venue = v;
         this.availableSeats = v.getCountSeats();
         this.bookedTickets = new HashMap<Integer, SeatHold>();
-        this.reservedSeats = new HashMap<String, SeatHold>();
+        this.reservedSeats = new HashMap<Integer, SeatHold>();
     }
 
     /***
@@ -99,7 +99,8 @@ public class TicketServiceImpl implements TicketService {
                 //System.out.println("time limit: " + timeLimit);
                 bookedTickets.remove(seatHoldId); //remove the object from booked tickets because either the seats are going to be reserved or made available.
                 if(timeLimit < _timeLimit){ //if the customer reserves seats within the time limit
-                    reservedSeats.put(customerEmail, seatHold); //add the corr seathold object with customer in the map
+                    if(reservedSeats.get(seatHoldId) == null)
+                        reservedSeats.put(seatHoldId, seatHold); //add the corr seathold object with customer in the map
                     for(Seat seat: seatHold.getSeats()){ //update the status of all the seats reserved by the customer
                         seat.setStatus(Status.RESERVED);
                     }
@@ -108,20 +109,18 @@ public class TicketServiceImpl implements TicketService {
 
                 }else{
                     //time limit expired so make those seats available again
-                    if(reservedSeats.get(customerEmail) ==null){ //
-                        for(Seat seat: seatHold.getSeats()){
-                            seat.setStatus(Status.AVAILABLE);
-                        }
-                        availableSeats = availableSeats + seatHold.getSeats().size(); //update the count of available seats
-                    }else{
-                        System.out.println("you already have a booking with this id and email address");
+                   for(Seat seat: seatHold.getSeats()){
+                      seat.setStatus(Status.AVAILABLE);
+                      availableSeats = availableSeats + seatHold.getSeats().size(); //update the count of available seats
                     }
-
                 }
             }else{
                 //user tries to reserve seats with wrong email address
                 System.out.println("Either id or email address is not verified. Please continue with correct values.");
             }
+        }
+        if(reservedSeats.get(seatHoldId) != null){
+            return "Sorry, a booking with this id already exists!";
         }
         return "Sorry couldn't reserve seats successfully!"; //reservation request couldn't be completed
     }
