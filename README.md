@@ -4,8 +4,8 @@
 This application allows users to check if seats are available or not, then allows them to hold tickets for a specified amount of time. USers can then reserve those tickets. However, if the time to reserve crosses the expiration time then tickets cannot be reserved.
 
 ## Steps to run the application
-- clone the repository
-In the directory with pom.xml run the following maven commands
+clone the repository<br>
+In the directory with pom.xml run the following maven commands<br>
 Step 1: mvn clean install<br>
 Step 2: mvn clean install package assembly:assembly -DskipTests (To skip tests)/ mvn clean install package assembly:assembly<br>
 Step 3: java -jar target\ticketservice-1.0-SNAPSHOT-jar-with-dependencies.jar com.walmart.coding.challenge.App
@@ -28,3 +28,8 @@ Step 3: java -jar target\ticketservice-1.0-SNAPSHOT-jar-with-dependencies.jar co
 9. Test case has been written for all the three methods in the interface implementation
 9. Vaidation has been performed
 20. Interactive menu has been programmed 
+
+Scenarios considered-<br>
+1. Number of seats requested to book by the user are more than the no.of seats available 
+2. User tries to reserve seats with the same booking id which has already been reserved
+3. User tries to reserve seats with incorrect email id or booking id
