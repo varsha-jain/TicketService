@@ -13,12 +13,13 @@ Step 3: java -jar target\ticketservice-1.0-SNAPSHOT-jar-with-dependencies.jar co
 ### Assumptions:
 1. Service asks user only for the number of seats he wants to book and doesn't ask for the specific row<br>
 2. Various cases such as invalid id and email address combination, expiration time check, number of seats to be reserved are more than the actual seats available are handled by the program<br>
-3. Service is written in Java and maven is used as build tool
+3. Service is written in Java and maven is used as build tool<br>
+4. Expiration time is taken to be 60 seconds
 
 ## Implementation Details:
 1. Models: Venue,Customer, Seat, SeatHold
 2. SeatHold is a collection of Seats
-3. Every Seat has a location in terms of row and columne na da status
+3. Every Seat has a location in terms of row and columne and a status (Available, Hold, Reserved)
 4. Statuses are stated in enum
 5. Venue is a collection of seats
 6. Every Seat hold is associated with a customer
