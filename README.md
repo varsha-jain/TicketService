@@ -5,7 +5,7 @@ This application allows users to check if seats are available or not, then allow
 
 ## Steps to run the application
 Step 1: mvn clean install<br>
-Step 2: mvn clean install package assembly:assembly -DskipTests<br>
+Step 2: mvn clean install package assembly:assembly -DskipTests (To skip tests)/ mvn clean install package assembly:assembly<br>
 Step 3: java -jar target\ticketservice-1.0-SNAPSHOT-jar-with-dependencies.jar com.walmart.coding.challenge.App
 
 ### Assumptions:
